@@ -3,42 +3,94 @@
     <head>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
 <style>
-.current_plan {
-    margin-top: 100px;
+
+.card{
+    border-radius: 20px;
 }
+.card-text {
+    margin-top: 10px;
+}
+
+.list-group-item{
+    margin-top: 15px;
+}
+
+.current_plan {
+    margin: 300px;
+}
+h1{
+    text-align: center;
+    color: black;
+}
+
+.mx-auto {
+    border-radius: 15px;
+
+}
+p {
+    color: black;
+}
+label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color:white;
+}
+
+form {
+    padding: 30px;
+    border-radius: 30px;   
+}
+
+input[type=submit] {
+    margin-top: 20px;
+    border: 3px solid;
+    color: white;
+}
+
+input[type=submit]:hover {
+    margin-top: 20px;
+    border: 3px solid;
+    color: #3769BF;
+}
+
+.wrapper {
+    background:
+     linear-gradient(
+      rgba(33,33,33, 0.45),
+      rgba(33,33,33, 0.45)
+    ),
+    url("https://images.unsplash.com/photo-1525973132219-a04334a76080?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1877&q=80");
+    background-size: 100%;
+}
+
 </style>
         <title> {% block title %} {% endblock %} </title>
     </head>
     
-    <body>
+    <body class="wrapper">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
+              <a class="navbar-brand" href="/">Panthers Suite</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/training">Training</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="#">Player Profiles</a>
                   </li>
                 </ul>
               </div>
             </div>
           </nav>
+          <div class="img">
         {% block content %}
         {% endblock %}
+          </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -1,35 +1,11 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
-
 <div class="current_plan">
-<div class="mx-auto" style="width: 600px;">
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-    <button type="button" class="btn btn-outline-primary">Primary</button>
-    <button type="button" class="btn btn-outline-primary">Primary</button>
+<div class="mx-auto" style="width: 800px;">
+    <h1> Generate your Trainig Plan </h1>
     {{ wtf.quick_form(form) }}
 
-    </form>
-<div class="card text-center">
-  <div class="card-header">
-      <h1> Training Plan </h1>
-  </div>
-  <div class="card-body">
-      <h5 class="card-title">Trainingsplan für heute</h5>
-      <p class="card-text">Text</p>
-
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
-</div>
 </div>
 </div>
 {% endblock %}

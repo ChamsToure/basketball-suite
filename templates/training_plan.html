@@ -2,18 +2,20 @@
 {% block content %}
 
 <div class="current_plan">
-<div class="mx-auto" style="width: 600px;">
-<div class="card text-center">
+<div class="mx-auto" style="width: 800px;">
+<div class="card">
   <div class="card-header">
       <h1> Training Plan </h1>
   </div>
   <div class="card-body">
       <h5 class="card-title">Trainingsplan für heute</h5>
-      <p class="card-text">{{ training_plan.training_plan[0].name }}</p>
-      <p class="card-text">{{ training_plan.training_plan[1].name }}</p>
-      <p class="card-text"><{{ training_plan.training_plan[2].name }}/p>
-      <p class="card-text">{{ training_plan.training_plan[3].name }}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item">1. {{training_plan.training_plan[0].name}}</li>
+        <li class="list-group-item">2. {{training_plan.training_plan[1].name}}</li>
+        <li class="list-group-item">3. {{training_plan.training_plan[2].name}}</li>
+        <li class="list-group-item">4. {{training_plan.training_plan[3].name}}</li>
+      </ul>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
   <div class="card-footer text-muted">
     2 days ago
