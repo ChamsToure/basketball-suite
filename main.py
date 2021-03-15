@@ -8,19 +8,14 @@ from wtforms.fields.html5 import IntegerRangeField
 from wtforms.validators import DataRequired
 
 class NameForm(FlaskForm):
-    #name = StringField("What is the name of the category?", validators=[DataRequired()])
-    #level = IntegerField("Type in a Max in",default = 0,  validators=[DataRequired()])
-    max_intensity = SelectField("Level of Intensity", choices = [(5,5),
+    max_intensity = SelectField("Level of Intensity - Low(5-7) Medium(8-10) High(11-12)", choices = [(5,5),
                                                                  (6,6),
                                                                  (7,7),
                                                                  (8,8),
                                                                  (9,9),
                                                                  (10,10),
                                                                  (11,11),
-                                                                 (12,12),
-                                                                 (13,13),
-                                                                 (14,14),
-                                                                 (15,15)], validators=[DataRequired()])
+                                                                 (12,12)], validators=[DataRequired()])
     categories = SelectField("Categories", choices= [("Ballhandling","Ballhandling"),
                                                   ("Shooting", "Shooting"),
                                                   ("Defense", "Defense")
@@ -38,43 +33,33 @@ exercises_of_category = create_exercise_list("ballhandling")
 def home():
     return render_template("index.html", content="Testing")
 
-@app.route("/test/<string:category>")
-def test(category):
-    exercises_of_category = create_exercise_list(category)
-    training_plan = Training_plan(category, 10, exercises_of_category)
-    training_plan.create_plan(4)
-    #training_plan.print_training_plan()
-    test = training_plan.training_plan[0].name
-    return f"<h1>  </h1>"
-
 @app.route("/training", methods=["GET", "POST"]) #/<string:category>/<int:intensity>")
 def training():
-    #name = None
-    #level = None
     form = NameForm()
+    history_sheet = sheet.worksheet("History")
+    last_5 = history_sheet.get_all_values()[-5:]#fetches the 5 last items of the history
+    last_5.sort(reverse=True) #So that the most recent plans are displayed at the top
+    print(last_5)
     if form.validate_on_submit():
-        #name = form.name.data
-        #level = form.level.data
         categories = form.categories.data
         max_intensity = form.max_intensity.data
         return redirect(f"/training-plan/{categories}/{max_intensity}")
-#    exercises_list = create_exercise_list(category)
-#    training_plan = Training_plan(category, intensity, exercises_list)
-#    training_plan.create_plan(4)
-#    test = training_plan.training_plan[0].name
-    return render_template("training.html", form=form)#name=training_plan
+    return render_template("training.html", form=form, last_5=last_5)
 
 #Its is the endpoint, when the user clicks on the submit button to  create a new training plan
 @app.route("/training-plan/<string:category>/<int:intensity>", methods=["GET", "POST"])
 def get_trainingplan(category, intensity):
     list_of_exercises = create_exercise_list(category)#fetches the entire list of exercises for this particular category
-    training_plan = Training_plan(category, intensity, list_of_exercises)
+    training_plan = Training(category, intensity, list_of_exercises)
     training_plan.create_plan(4)# Creates a Trainingplan with 4 exercises
+    training_plan.sort_plan()
+    save_plan(training_plan)
     return render_template("training_plan.html", training_plan=training_plan )
 
 @app.route("/profiles")
 def profiles():
     return render_template("player_profiles.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

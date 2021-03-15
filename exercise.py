@@ -1,6 +1,6 @@
 import random
 
-class Training_plan:
+class Training:
 
     def __init__(self, category, intensity, exercise_list):
         self.category = category
@@ -9,7 +9,7 @@ class Training_plan:
         self.training_plan = []
 
         #fetching all the exercises of the category when we construct an object
-        
+
     def print_training_plan(self):
         print("===========================Hello Chams, this is the Plan for today============================== \n")
         print("Here are some information about the plan for today\n")
@@ -21,6 +21,10 @@ class Training_plan:
             print(i.category)
             print(i.level)
             print(i.description)
+
+    #Sorts the plan, so that the easiest exercise comes first
+    def sort_plan(self):
+        self.training_plan.sort(key=lambda exercise: exercise.level)
 
     def check_sum(self, current_training_plan):
         current_sum = 0

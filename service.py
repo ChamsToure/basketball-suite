@@ -1,4 +1,5 @@
 import gspread
+from datetime import date
 import docx
 import sys
 from oauth2client.service_account import ServiceAccountCredentials
@@ -22,7 +23,6 @@ header_length = len(header)
 #chosen category from the command line. Must be set to 1 if I pass the category
 category = "ballhandling"#sys.argv[1]
 max_intensity = 10 #int(sys.argv[2])
-print(f"The max intensity is {max_intensity}")
 def create_exercise_list(the_category):
 	list_of_exercise = []
 	worksheet = sheet.worksheet(the_category.capitalize())
@@ -33,12 +33,24 @@ def create_exercise_list(the_category):
 		list_of_exercise.append(obj)
 	return list_of_exercise
 
-exercises_of_category = create_exercise_list(category)#sys.argv[1]
-
-training_plan = Training_plan(category, max_intensity, exercises_of_category)
-training_plan.create_plan(4)
-
-training_plan.print_training_plan()
-
+#Add generated training plan to the history
+def save_plan(finished_plan):
+    index = 1
+    today = date.today().strftime("%d/%m/%y")
+    exercise_list = [exercise.name for exercise in finished_plan.training_plan]
+    worksheet = sheet.worksheet("History")
+    items = len(worksheet.col_values(1)) #Gets all values from the first column
+    next_entry = items+1
+    #Writing to a cell have to be done manually, 
+    #because there is no simple and readable way to map each info to its associated cell
+    worksheet.update_cell(next_entry, 1, next_entry)
+    worksheet.update_cell(next_entry, 2, finished_plan.category)
+    worksheet.update_cell(next_entry, 3, exercise_list[0])
+    worksheet.update_cell(next_entry, 4, exercise_list[1])
+    worksheet.update_cell(next_entry, 5, exercise_list[2])
+    worksheet.update_cell(next_entry, 6, exercise_list[3])
+    worksheet.update_cell(next_entry, 7, finished_plan.intensity)
+    worksheet.update_cell(next_entry, 8, today)
+    worksheet.update_cell(next_entry, 9, "No Rating")
 
 

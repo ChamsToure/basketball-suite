@@ -6,6 +6,25 @@
     <h1> Generate your Trainig Plan </h1>
     {{ wtf.quick_form(form) }}
 
+    </br></br>
+    <h2> History </h2>
+    {% for plan in last_5 %}
+        <div class="card">
+            <div class="card-header">
+                <h3> {{plan[0]}} | {{plan[1]}} | Intensity {{plan[6]}} | Rating: {{plan[8]}}</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> <h5>{{plan[2]}} </h5> </li>
+                    <li class="list-group-item"> <h5>{{plan[3]}} </h5> </li>
+                    <li class="list-group-item"> <h5>{{plan[4]}} </h5> </li>
+                    <li class="list-group-item"> <h5>{{plan[5]}} </h5> </li>
+
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+  </div>
 </div>
 </div>
 {% endblock %}

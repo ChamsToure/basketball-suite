@@ -5,20 +5,16 @@
 <div class="mx-auto" style="width: 800px;">
 <div class="card">
   <div class="card-header">
-      <h1> Training Plan </h1>
+      <h1> Training Plan - {{training_plan.category.capitalize()}} </h1>
   </div>
   <div class="card-body">
-      <h5 class="card-title">Trainingsplan für heute</h5>
       <ul class="list-group list-group-flush">
-          <li class="list-group-item">1. {{training_plan.training_plan[0].name}}</li>
-        <li class="list-group-item">2. {{training_plan.training_plan[1].name}}</li>
-        <li class="list-group-item">3. {{training_plan.training_plan[2].name}}</li>
-        <li class="list-group-item">4. {{training_plan.training_plan[3].name}}</li>
+          {% for exercise in training_plan.training_plan %}
+          <li class="list-group-item"> <h4>{{exercise.name}} | Level: {{exercise.level}} </h4> <br/> {{exercise.description}} </li>
+          {% endfor %}
       </ul>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a onClick="window.location.reload();" class="btn btn-primary" style="margin-top: 20px;">Refresh</a>
   </div>
-  <div class="card-footer text-muted">
-    2 days ago
   </div>
 </div>
 </div>
