@@ -2,6 +2,8 @@
 A Training Plan Generator for Basketball to pick the right exercises.
 It also helps you to track and rate good plans, for better reusability.
 
+![alt text](https://github.com/ChamsToure/basketball-suite/blob/main/demo.gif)
+
 ## Features
 - All of the exercises and data is stored in google sheets
 - Add, edit or delete data via google sheets
