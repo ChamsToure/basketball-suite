@@ -17,7 +17,7 @@ It also helps you to track and rate good plans, for better reusability.
 - oauth2client
 - To install all packages at once:
     ```
-    pip install pip install flask flask-bootstrap flask-wtf gspread oauth2client
+    pip install flask flask-bootstrap flask-wtf gspread oauth2client
     ```
 - To use gspread properly, you have to authenticate to enable API access. Here is the [documentation](https://gspread.readthedocs.io/en/latest/oauth2.html)
 
