@@ -13,6 +13,7 @@ gc = gspread.authorize(creds)
 sheet = gc.open("exercises")
 
 #listing all the categories existing in my trainings and so that I can iterate over
+#Change the list of categories to your needs. This is just an example.
 categories = ["Fastbreak", "Multipurpose", "Shooting", "Defense", "Offense", "Team-Offense", "Team-Defense", "Athletiktraining", "Ballhandling"]
 
 #The header of the columns
