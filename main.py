@@ -39,7 +39,6 @@ def training():
     history_sheet = sheet.worksheet("History")
     last_5 = history_sheet.get_all_values()[-5:]#fetches the 5 last items of the history
     last_5.sort(reverse=True) #So that the most recent plans are displayed at the top
-    print(last_5)
     if form.validate_on_submit():
         categories = form.categories.data
         max_intensity = form.max_intensity.data
